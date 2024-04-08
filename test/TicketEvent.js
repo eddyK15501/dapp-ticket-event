@@ -1,16 +1,22 @@
 const { expect } = require('chai');
 
 describe('TicketEvent', () => {
-    describe('Deployment', () => {
-        it('Sets token name', async () => {
-            const contractFactory = await ethers.getContractFactory('TicketEvent');
-            const ticketEvent = await contractFactory.deploy('TicketEvent', 'TICK');
+  let ticketEvent;
 
-            const name = await ticketEvent.name();
-            const symbol = await ticketEvent.symbol();
+  beforeEach(async () => {
+    const contractFactory = await ethers.getContractFactory('TicketEvent');
+    ticketEvent = await contractFactory.deploy('TicketEvent', 'TICK');
+  });
 
-            expect(name).to.eq('TicketEvent');
-            expect(symbol).to.eq('TICK');
-        })
-    })
-})
+  describe('Deployment', () => {
+    it('Sets token name', async () => {
+      const name = await ticketEvent.name();
+      expect(name).to.eq('TicketEvent');
+    });
+
+    it('Sets token symbol', async () => {
+      const symbol = await ticketEvent.symbol();
+      expect(symbol).to.eq('TICK');
+    });
+  });
+});
