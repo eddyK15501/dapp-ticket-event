@@ -53,5 +53,18 @@ describe('TicketEvent', () => {
       const totalOccasions = await ticketEvent.totalOccasions();
       expect(totalOccasions).to.eq(1);
     });
+
+    it('Returns the correct event attributes listed', async () => {
+      const event = await ticketEvent.getEvent(1);
+
+      expect(event.id).to.eq(1);
+      expect(event.name).to.eq(EVENT_NAME);
+      expect(event.cost).to.eq(EVENT_COST);
+      expect(event.tickets).to.eq(EVENT_MAX_TICKETS);
+      expect(event.maxTickets).to.eq(EVENT_MAX_TICKETS);
+      expect(event.date).to.eq(EVENT_DATE);
+      expect(event.time).to.eq(EVENT_TIME);
+      expect(event.location).to.eq(EVENT_LOCATION);
+    });
   });
 });
