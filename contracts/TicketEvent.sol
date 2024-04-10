@@ -6,13 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 contract TicketEvent is ERC721 {
     address public owner;
     uint256 public totalOccasions;
-
-    mapping(uint => Occasion) public occasion;
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Authorization Error");
-        _;
-    }
+    uint256 public totalSupply;
 
     struct Occasion {
         uint256 id;
@@ -23,6 +17,14 @@ contract TicketEvent is ERC721 {
         string date;
         string time;
         string location;
+    }
+
+    mapping(uint => Occasion) public occasion;
+    mapping(uint256 => mapping(uint256 => address)) public seatTaken;
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Authorization Error");
+        _;
     }
 
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
@@ -49,6 +51,13 @@ contract TicketEvent is ERC721 {
             _time,
             _location
         ); 
+    }
+
+    function mint(uint256 _id, uint256 _seat) public payable {
+        occasion[_id].tickets -= 1;
+
+        totalSupply++;
+        _safeMint(msg.sender, totalSupply);
     }
 
     function getEvent(uint256 _id) public view returns(Occasion memory) {
