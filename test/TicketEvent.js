@@ -67,4 +67,15 @@ describe('TicketEvent', () => {
       expect(event.location).to.eq(EVENT_LOCATION);
     });
   });
+
+  describe('Minting', () => {
+    const ID = 1;
+    const SEAT = 50;
+    const AMOUNT = ethers.utils.parseUnits('1', 'ether');
+
+    beforeEach(async () => {
+        const transaction = await ticketEvent.connect(buyer).mint(ID, SEAT, { value: AMOUNT });
+        await transaction.wait();
+    });
+  })
 });

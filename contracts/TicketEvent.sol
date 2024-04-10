@@ -56,6 +56,10 @@ contract TicketEvent is ERC721 {
     }
 
     function mint(uint256 _id, uint256 _seat) public payable {
+        require(msg.value == occasion[_id].cost);
+        require(hasBought[_id][msg.sender] == false);
+        require(seatTaken[_id][_seat] == address(0));
+
         occasion[_id].tickets -= 1;
         hasBought[_id][msg.sender] = true;
         seatTaken[_id][_seat] = msg.sender;
