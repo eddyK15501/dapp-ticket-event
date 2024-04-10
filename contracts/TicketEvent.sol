@@ -21,6 +21,7 @@ contract TicketEvent is ERC721 {
 
     mapping(uint => Occasion) public occasion;
     mapping(uint256 => mapping(uint256 => address)) public seatTaken;
+    mapping(uint256 => uint256[]) internal seatsTaken;
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Authorization Error");
@@ -55,6 +56,10 @@ contract TicketEvent is ERC721 {
 
     function mint(uint256 _id, uint256 _seat) public payable {
         occasion[_id].tickets -= 1;
+
+        seatTaken[_id][_seat] = msg.sender;
+
+        seatsTaken[_id].push(_seat);
 
         totalSupply++;
         _safeMint(msg.sender, totalSupply);
