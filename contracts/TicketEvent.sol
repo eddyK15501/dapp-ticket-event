@@ -20,6 +20,7 @@ contract TicketEvent is ERC721 {
     }
 
     mapping(uint => Occasion) public occasion;
+    mapping(uint256 => mapping(address => bool)) public hasBought;
     mapping(uint256 => mapping(uint256 => address)) public seatTaken;
     mapping(uint256 => uint256[]) internal seatsTaken;
 
@@ -56,9 +57,8 @@ contract TicketEvent is ERC721 {
 
     function mint(uint256 _id, uint256 _seat) public payable {
         occasion[_id].tickets -= 1;
-
+        hasBought[_id][msg.sender] = true;
         seatTaken[_id][_seat] = msg.sender;
-
         seatsTaken[_id].push(_seat);
 
         totalSupply++;
