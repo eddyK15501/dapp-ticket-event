@@ -9,6 +9,11 @@ contract TicketEvent is ERC721 {
 
     mapping(uint => Occasion) public occasion;
 
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Authorization Error");
+        _;
+    }
+
     struct Occasion {
         uint256 id;
         string name;
@@ -31,7 +36,7 @@ contract TicketEvent is ERC721 {
         string memory _date,
         string memory _time,
         string memory _location
-    ) public {
+    ) public onlyOwner {
         totalOccasions++;
 
         occasion[totalOccasions] = Occasion(
