@@ -50,8 +50,8 @@ describe('TicketEvent', () => {
 
   describe('Occasions', () => {
     it('Increments occasions count', async () => {
-        const totalOccasions = await ticketEvent.totalOccasions();
-        expect(totalOccasions).to.eq(1);
+      const totalOccasions = await ticketEvent.totalOccasions();
+      expect(totalOccasions).to.eq(1);
     });
   });
 });

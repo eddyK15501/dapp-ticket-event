@@ -45,5 +45,9 @@ contract TicketEvent is ERC721 {
             _location
         ); 
     }
+
+    function getEvent(uint256 _id) public view returns(Occasion memory) {
+        return occasion[_id];
+    }
 }
 
