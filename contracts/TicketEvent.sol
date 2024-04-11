@@ -72,5 +72,9 @@ contract TicketEvent is ERC721 {
     function getEvent(uint256 _id) public view returns(Occasion memory) {
         return occasion[_id];
     }
+
+    function getSeatsTaken(uint256 _id) public view returns(uint256[] memory) {
+        return seatsTaken[_id];
+    }
 }
 
