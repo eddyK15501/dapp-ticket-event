@@ -9,16 +9,16 @@ const EVENT_LOCATION = 'Brooklyn, New York';
 
 describe('TicketEvent', () => {
   let ticketEvent;
-  let deployer, buyer;
+  let owner, buyer;
 
   beforeEach(async () => {
-    [deployer, buyer] = await ethers.getSigners();
+    [owner, buyer] = await ethers.getSigners();
 
     const contractFactory = await ethers.getContractFactory('TicketEvent');
     ticketEvent = await contractFactory.deploy('TicketEvent', 'TICK');
 
     const transaction = await ticketEvent
-      .connect(deployer)
+      .connect(owner)
       .listEvent(
         EVENT_NAME,
         EVENT_COST,
@@ -44,7 +44,7 @@ describe('TicketEvent', () => {
 
     it('Sets the contract owner address', async () => {
       const ownerAddress = await ticketEvent.owner();
-      expect(ownerAddress).to.eq(deployer.address);
+      expect(ownerAddress).to.eq(owner.address);
     });
   });
 
@@ -96,14 +96,33 @@ describe('TicketEvent', () => {
     });
 
     it('Checks the seat number', async () => {
-        const seats = await ticketEvent.getSeatsTaken(ID);
-        expect(seats.length).to.eq(1);
-        expect(seats[0]).to.eq(SEAT);
-    }); 
+      const seats = await ticketEvent.getSeatsTaken(ID);
+      expect(seats.length).to.eq(1);
+      expect(seats[0]).to.eq(SEAT);
+    });
 
     it('Updates the contract balance after minting', async () => {
-        const balance = await ethers.provider.getBalance(ticketEvent.address);
-        expect(balance).to.eq(AMOUNT);
+      const balance = await ethers.provider.getBalance(ticketEvent.address);
+      expect(balance).to.eq(AMOUNT);
+    });
+  });
+
+  describe('Withdraw contract balance as owner', () => {
+    const ID = 1;
+    const SEAT = 500;
+    const AMOUNT = ethers.utils.parseUnits('1', 'ether');
+    let balanceBefore;
+
+    beforeEach(async () => {
+      balanceBefore = await ethers.provider.getBalance(owner.address);
+
+      const transaction = await ticketEvent
+        .connect(buyer)
+        .mint(ID, SEAT, { value: AMOUNT });
+      await transaction.wait();
+
+      transaction = await ticketEvent.connect(deployer).withdraw();
+      await transaction.wait();
     });
   });
 });
