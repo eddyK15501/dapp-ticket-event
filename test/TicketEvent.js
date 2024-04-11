@@ -116,13 +116,18 @@ describe('TicketEvent', () => {
     beforeEach(async () => {
       balanceBefore = await ethers.provider.getBalance(owner.address);
 
-      const transaction = await ticketEvent
+      let transaction = await ticketEvent
         .connect(buyer)
         .mint(ID, SEAT, { value: AMOUNT });
       await transaction.wait();
 
-      transaction = await ticketEvent.connect(deployer).withdraw();
+      transaction = await ticketEvent.connect(owner).withdraw();
       await transaction.wait();
+    });
+
+    it('Updates the balance of the contract owner', async () => {
+      const balanceAfter = await ethers.provider.getBalance(owner.address);
+      expect(balanceAfter).to.be.greaterThan(balanceBefore);
     });
   });
 });
