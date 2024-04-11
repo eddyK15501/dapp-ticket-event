@@ -70,7 +70,7 @@ describe('TicketEvent', () => {
 
   describe('Minting', () => {
     const ID = 1;
-    const SEAT = 50;
+    const SEAT = 500;
     const AMOUNT = ethers.utils.parseUnits('1', 'ether');
 
     beforeEach(async () => {
@@ -90,9 +90,15 @@ describe('TicketEvent', () => {
       expect(status).to.eq(true);
     });
 
-    it('Checks seat owner', async () => {
+    it('Checks seat owner address', async () => {
       const owner = await ticketEvent.seatTaken(ID, SEAT);
       expect(owner).to.eq(buyer.address);
     });
+
+    it('Checks the seat number', async () => {
+        const seats = await ticketEvent.getSeatsTaken(ID);
+        expect(seats.length).to.eq(1);
+        expect(seats[0]).to.eq(SEAT);
+    }); 
   });
 });
