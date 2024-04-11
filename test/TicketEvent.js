@@ -84,5 +84,15 @@ describe('TicketEvent', () => {
       const event = await ticketEvent.getEvent(1);
       expect(event.tickets).to.eq(EVENT_MAX_TICKETS - 1);
     });
+
+    it('Checks if ticket has been bought', async () => {
+      const status = await ticketEvent.hasBought(ID, buyer.address);
+      expect(status).to.eq(true);
+    });
+
+    it('Checks seat owner', async () => {
+      const owner = await ticketEvent.seatTaken(ID, SEAT);
+      expect(owner).to.eq(buyer.address);
+    });
   });
 });
