@@ -100,5 +100,10 @@ describe('TicketEvent', () => {
         expect(seats.length).to.eq(1);
         expect(seats[0]).to.eq(SEAT);
     }); 
+
+    it('Updates the contract balance after minting', async () => {
+        const balance = await ethers.provider.getBalance(ticketEvent.address);
+        expect(balance).to.eq(AMOUNT);
+    });
   });
 });
