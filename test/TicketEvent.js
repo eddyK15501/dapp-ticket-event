@@ -129,5 +129,10 @@ describe('TicketEvent', () => {
       const balanceAfter = await ethers.provider.getBalance(owner.address);
       expect(balanceAfter).to.be.greaterThan(balanceBefore);
     });
+
+    it('Updates the balance of the smart contract', async () => {
+      const balance = await ethers.provider.getBalance(ticketEvent.address);
+      expect(balance).to.eq(0);
+    });
   });
 });
