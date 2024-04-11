@@ -74,8 +74,15 @@ describe('TicketEvent', () => {
     const AMOUNT = ethers.utils.parseUnits('1', 'ether');
 
     beforeEach(async () => {
-        const transaction = await ticketEvent.connect(buyer).mint(ID, SEAT, { value: AMOUNT });
-        await transaction.wait();
+      const transaction = await ticketEvent
+        .connect(buyer)
+        .mint(ID, SEAT, { value: AMOUNT });
+      await transaction.wait();
     });
-  })
+
+    it('Updates ticket count', async () => {
+      const event = await ticketEvent.getEvent(1);
+      expect(event.tickets).to.eq(EVENT_MAX_TICKETS - 1);
+    });
+  });
 });
