@@ -4,11 +4,12 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require('hardhat');
+const events = require('../utils/events');
 
 const tokens = (n) => {
-  return ethers.utils.parseUnits(n.toString(), 'ether')
-}
+  return ethers.utils.parseUnits(n.toString(), 'ether');
+};
 
 async function main() {
   const signer = await ethers.getSigners();
@@ -18,6 +19,8 @@ async function main() {
   await ticketEvent.deployed();
 
   console.log(`Deployed. TicketEvent contract address: ${ticketEvent.address}`);
+
+  console.log(events);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
