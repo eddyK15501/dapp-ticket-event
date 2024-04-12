@@ -15,7 +15,7 @@ describe('TicketEvent', () => {
     [owner, buyer] = await ethers.getSigners();
 
     const contractFactory = await ethers.getContractFactory('TicketEvent');
-    ticketEvent = await contractFactory.deploy('TicketEvent', 'TICK');
+    ticketEvent = await contractFactory.deploy('TicketEvent', 'TIC');
 
     const transaction = await ticketEvent
       .connect(owner)
@@ -39,7 +39,7 @@ describe('TicketEvent', () => {
 
     it('Sets token symbol', async () => {
       const symbol = await ticketEvent.symbol();
-      expect(symbol).to.eq('TICK');
+      expect(symbol).to.eq('TIC');
     });
 
     it('Sets the contract owner address', async () => {

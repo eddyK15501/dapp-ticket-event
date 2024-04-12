@@ -10,7 +10,15 @@ const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString(), 'ether')
 }
 
-async function main() {}
+async function main() {
+  const signer = await ethers.getSigners();
+
+  const contractFactory = await ethers.getContractFactory('TicketEvent');
+  const ticketEvent = await contractFactory.deploy('TicketEvent', 'TIC');
+  await ticketEvent.deployed();
+
+  console.log(`Deployed. TicketEvent contract address: ${ticketEvent.address}`);
+}
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
