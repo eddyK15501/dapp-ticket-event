@@ -1,6 +1,7 @@
 {
   "name": "hardhat-project",
   "scripts": {
+    "node": "npx hardhat node",
     "test": "npx hardhat test"
   },
   "devDependencies": {
