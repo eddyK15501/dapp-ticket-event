@@ -7,10 +7,6 @@
 const hre = require('hardhat');
 const events = require('../utils/events');
 
-const tokens = (n) => {
-  return ethers.utils.parseUnits(n.toString(), 'ether');
-};
-
 async function main() {
   const signer = await ethers.getSigners();
 
@@ -21,6 +17,22 @@ async function main() {
   console.log(`Deployed. TicketEvent contract address: ${ticketEvent.address}`);
 
   console.log(events);
+
+  for (let event of events) {
+    const transaction = await ticketEvent
+      .connect(signer[0])
+      .listEvent(
+        event.name,
+        event.cost,
+        event.tickets,
+        event.date,
+        event.time,
+        event.location
+      );
+
+    await transaction.wait();
+    console.log(`${event.name} listed.`);
+  }
 }
 
 // We recommend this pattern to be able to use async/await everywhere
