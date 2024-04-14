@@ -16,8 +16,6 @@ async function main() {
 
   console.log(`Deployed. TicketEvent contract address: ${ticketEvent.address}`);
 
-  console.log(events);
-
   for (let event of events) {
     const transaction = await ticketEvent
       .connect(signer[0])
