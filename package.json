@@ -1,6 +1,7 @@
 {
   "name": "hardhat-project",
   "scripts": {
+    "start": "cd client && npm run dev",
     "deploy": "npx hardhat run scripts/deploy.js --network localhost",
     "node": "npx hardhat node",
     "test": "npx hardhat test"
