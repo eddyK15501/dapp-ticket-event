@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 
+// Components 
+import Navigation from './components/Navigation';
+
 // ABIs
 import TicketEvent from '../abi/TicketEvent.json';
 
@@ -11,13 +14,17 @@ function App() {
   const [account, setAccount] = useState(null);
 
   const fetchData = async () => {
-    window.ethereum.on('accountsChanged', async () => {
-      const accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts',
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', async () => {
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const checksumAccount = ethers.utils.getAddress(accounts[0]);
+        setAccount(checksumAccount);
       });
-      const checksumAccount = ethers.utils.getAddress(accounts[0]);
-      setAccount(checksumAccount);
-    });
+    } else {
+      alert('Please connect your wallet to proceed.')
+    }
   };
 
   useEffect(() => {
@@ -28,6 +35,7 @@ function App() {
     <>
       <div>
         <header>
+          <Navigation />
           <h2 className='header__title'><strong>Event</strong> Tickets</h2>
         </header>
         <h1>Client Start</h1>

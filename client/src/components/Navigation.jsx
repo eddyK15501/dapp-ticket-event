@@ -2,11 +2,11 @@ const Navigation = () => {
   return (
     <nav>
       <div className='nav__brand'>
-        <h1>Ticket Event</h1>
+        <h1>TicketEvent</h1>
         <input
           type='text'
           className='nav__search'
-          placeholder='Share your experience with millions of others'
+          placeholder='Search for an event'
         />
         <ul className='nav__links'>
           <li>

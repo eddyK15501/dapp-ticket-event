@@ -11,7 +11,6 @@
   --clr-black: #000000;
   --clr-grey: #2b2727;
   --clr-grey-2: #2b2727;
-
   --clr-dark-blue: #0237AB;
   --clr-light-blue: #125AC6;
 }
@@ -35,17 +34,13 @@ nav {
 .nav__brand {
   display: flex;
   align-items: center;
-
   padding: 0 75px;
-
   grid-column: 1 / span 3;
-
   height: 65px;
 }
 
 .nav__brand h1 {
   color: var(--clr-white);
-
   font-family: "Poiret One";
   font-size: 1.50em;
   font-style: italic;
@@ -58,10 +53,8 @@ nav {
   background-repeat: no-repeat;
   background-position-y: center;
   color: var(--clr-white);
-
   width: 250px;
   height: 35px;
-
   border: none;
   border-radius: 4px;
   margin: 0 5px;
@@ -77,9 +70,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-
   height: 100%;
-
   list-style: none;
 }
 
@@ -93,12 +84,9 @@ nav {
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-
   height: 100%;
   padding: 0 10px;
-
   color: var(--clr-white);
-
   font-weight: 600;
   text-decoration: none;
 }
@@ -111,17 +99,13 @@ nav {
   width: 175px;
   height: 50px;
   margin: 0 75px 0 auto;
-
   background: rgba(255, 255, 255, 0.2);
   color: var(--clr-white);
-
   border: none;
   border-radius: 4px;
-
   font-family: "Open Sans";
   font-size: 1.10em;
   font-weight: 600;
-
   cursor: pointer;
   transition: all 250ms ease;
 }
@@ -140,18 +124,15 @@ header {
   background-repeat: no-repeat;
   background-color: var(--clr-grey);
   min-height: 25vh;
-
   position: relative;
 }
 
 .header__title {
   color: var(--clr-white);
-
   position: absolute;
   bottom: 25px;
   left: 10%;
   max-width: 450px;
-
   font-family: "Open Sans";
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
@@ -169,14 +150,11 @@ header {
 .sort__select {
   width: 225px;
   height: 40px;
-
   margin: 25px 5px;
   border: 1px solid var(--clr-black);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   cursor: pointer;
 }
 
@@ -201,13 +179,10 @@ header {
 
 .card {
   align-items: center;
-
   width: 95%;
   max-width: 850px;
   height: 75px;
-
   margin: 25px auto;
-
   position: relative;
   transition: all 250ms ease;
 }
@@ -216,12 +191,9 @@ header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(2, 1fr);
-
   height: 100%;
   padding: 10px;
-
   text-align: left;
-
   transition: 250ms ease all;
 }
 
@@ -242,7 +214,6 @@ header {
   grid-column: 1 / span 2;
   grid-row: 1 / span 2;
   place-self: center;
-
   font-size: clamp(0.95rem, 3vw, 1.15rem);
   font-weight: 300;
 }
@@ -252,11 +223,9 @@ header {
   grid-row: 1;
   place-self: center;
   align-self: end;
-
   font-family: "Open Sans";
   font-size: clamp(0.90rem, 3vw, 1.10rem);
   font-weight: 600;
-
   text-align: center;
 }
 
@@ -265,10 +234,8 @@ header {
   grid-row: 2;
   place-self: center;
   align-self: start;
-
   font-size: 1.15rem;
   font-weight: 300;
-
   text-align: center;
 }
 
@@ -276,7 +243,6 @@ header {
   grid-column: 9 / span 1;
   grid-row: 1 / span 2;
   place-self: center;
-
   font-size: clamp(1rem, 3vw, 1.10rem);
   font-weight: 300;
 }
@@ -293,21 +259,16 @@ header {
   grid-column: 10 / span 3;
   grid-row: 1 / span 2;
   place-self: center;
-
   width: 125px;
   height: 40px;
-
   background-color: var(--clr-light-blue);
   color: var(--clr-white);
-
   margin-left: auto;
   border: none;
   border-radius: 4px;
-
   font-family: "Open Sans";
   font-size: 1em;
   font-weight: 600;
-
   cursor: pointer;
   transition: all 250ms ease;
 }
@@ -335,7 +296,6 @@ header {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
-
   position: fixed;
   top: 50%;
   left: 50%;
@@ -346,17 +306,14 @@ header {
   display: grid;
   gap: 5px;
   grid-template-columns: repeat(25, 1fr);
-
   background: linear-gradient(to bottom, var(--clr-light-blue), var(--clr-white) 75%);
   border: 10px solid var(--clr-grey);
   border-radius: 8px;
-
   width: 90%;
   max-width: 1200px;
   height: 85%;
   margin: 0 auto;
   padding: 20px;
-
   position: fixed;
   top: 50%;
   left: 50%;
@@ -368,7 +325,6 @@ header {
 .occasion__seating h1 {
   grid-column: 1 / span 27;
   grid-row: 1;
-
   color: var(--clr-white);
   font-weight: 300;
 }
@@ -376,16 +332,12 @@ header {
 .occasion__close {
   grid-column: 27 / span 1;
   grid-row: 1;
-
   width: 35px;
   height: 35px;
-
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid var(--clr-grey);
   border-radius: 6px;
-
   cursor: pointer;
-
   transition: 250ms ease all;
 }
 
@@ -405,7 +357,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: var(--clr-grey);
   color: var(--clr-white);
 }
@@ -413,9 +364,7 @@ header {
 .occasion__stage {
   grid-column: 1 / span 27;
   grid-row: 2;
-
   height: 150px;
-
   border: 3px solid black;
   border-radius: 0 0 24px 24px;
 }
@@ -443,26 +392,20 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: var(--clr-dark-blue);
   color: var(--clr-white);
-
   width: 35px;
   height: 35px;
   border: 1px solid black;
   border-radius: 50%;
-
   font-size: 0.9em;
-
   cursor: pointer;
-
   transition: 250ms ease all;
 }
 
 .occasion__seats:hover {
   background: var(--clr-white);
   color: var(--clr-black);
-
   font-size: 1em;
   font-weight: 700;
 }
@@ -524,7 +467,6 @@ header {
     grid-row: 1 / span 2;
     place-self: flex-start;
     justify-self: center;
-
     margin-top: 20px;
   }
 
