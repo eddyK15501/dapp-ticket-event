@@ -13,6 +13,7 @@ import config from '../config/config.json';
 function App() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
+  const [ticketEvent, setTicketEvent] = useState(null);
 
   const fetchData = async () => {
     if (window.ethereum) {
@@ -22,8 +23,18 @@ function App() {
       const network = await provider.getNetwork();
       const contractAddress = config[network.chainId].TicketEvent.address;
       const ticketEvent = new ethers.Contract(contractAddress, abi, provider);
-      
-      console.log(ticketEvent.address);
+      setTicketEvent(ticketEvent);
+
+      // Get initial events
+      const totalOccasions = await ticketEvent.totalOccasions();
+      const events = []
+
+      for (let i = 1; i <= totalOccasions; i++) {
+        const event = await ticketEvent.getEvent(i);
+        events.push(event);
+      }
+
+      console.log(events);
 
       window.ethereum.on('accountsChanged', async () => {
         const accounts = await window.ethereum.request({
