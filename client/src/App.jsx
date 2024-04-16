@@ -23,7 +23,7 @@ function App() {
         setAccount(checksumAccount);
       });
     } else {
-      alert('Please connect your wallet to proceed.')
+      alert('Please connect your wallet.')
     }
   };
 
@@ -35,7 +35,7 @@ function App() {
     <>
       <div>
         <header>
-          <Navigation />
+          <Navigation account={account} setAccount={setAccount} />
           <h2 className='header__title'><strong>Event</strong> Tickets</h2>
         </header>
         <h1>Client Start</h1>

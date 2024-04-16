@@ -1,4 +1,15 @@
-const Navigation = () => {
+/* eslint-disable react/prop-types */
+import { ethers } from "ethers";
+
+const Navigation = ({ account, setAccount }) => {
+  const onConnectHandler = async () => {
+    const accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
+    const checksumAccount = ethers.utils.getAddress(accounts[0]);
+    setAccount(checksumAccount);
+  };
+
   return (
     <nav>
       <div className='nav__brand'>
@@ -23,6 +34,15 @@ const Navigation = () => {
           </li>
         </ul>
       </div>
+      {account ? (
+        <button type='button' className='nav__connect'>
+            {`${account.slice(0, 6)}...${account.slice(38, 42)}`}
+        </button>
+      ) : (
+        <button type='button' className='nav__connect' onClick={onConnectHandler}>
+            Connect Wallet
+        </button>
+      )}
     </nav>
   );
 };
