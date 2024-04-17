@@ -3,15 +3,12 @@
 import React from 'react';
 import { ethers } from 'ethers';
 
-const Card = ({
-  occasion,
-  setOccasion,
-  ticketEvent,
-  provider,
-  account,
-  toggle,
-  setToggle,
-}) => {
+const Card = ({ occasion, setOccasion, toggle, setToggle }) => {
+  const toggleModal = () => {
+    setOccasion(occasion);
+    toggle ? setToggle(false) : setToggle(true);
+  };
+
   return (
     <div className='card'>
       <div className='card__info'>
@@ -34,7 +31,9 @@ const Card = ({
             Sold Out
           </button>
         ) : (
-          <button className='card__button'>View Seating</button>
+          <button className='card__button' onClick={() => toggleModal()}>
+            View Seating
+          </button>
         )}
       </div>
       <hr />

@@ -73,9 +73,6 @@ function App() {
             <Card
               occasion={occasionProp}
               setOccasion={setOccasion}
-              ticketEvent={ticketEvent}
-              provider={provider}
-              account={account}
               toggle={toggle}
               setToggle={setToggle}
               key={occasionProp.name}
