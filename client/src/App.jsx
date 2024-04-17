@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 // Components
 import Navigation from './components/Navigation';
 import Card from './components/Card';
+import Sort from './components/Sort';
 
 // ABIs
 import abi from '../abi/TicketEvent.json';
@@ -68,6 +69,7 @@ function App() {
             <strong>Event</strong> Tickets
           </h2>
         </header>
+        <Sort />
         <div className='cards'>
           {occasions.map((occasionProp) => (
             <Card
