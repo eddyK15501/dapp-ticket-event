@@ -14,6 +14,7 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
   const [ticketEvent, setTicketEvent] = useState(null);
+  const [occasions, setOccasions] = useState([]);
 
   const fetchData = async () => {
     if (window.ethereum) {
@@ -33,9 +34,11 @@ function App() {
         const event = await ticketEvent.getEvent(i);
         events.push(event);
       }
+      setOccasions(events);
 
       console.log(events);
 
+      // Change accounts
       window.ethereum.on('accountsChanged', async () => {
         const accounts = await window.ethereum.request({
           method: 'eth_requestAccounts',
@@ -61,7 +64,11 @@ function App() {
             <strong>Event</strong> Tickets
           </h2>
         </header>
-        <h1>Client Start</h1>
+        <div className="cards">
+          {occasions.map(occasion => (
+            <p key={occasion.name}>{occasion.name}</p>
+          ))}
+        </div>
       </div>
     </>
   );
