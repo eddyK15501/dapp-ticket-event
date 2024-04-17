@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { ethers } from 'ethers'
@@ -20,7 +21,17 @@ const Card = ({ occasion }) => {
                     {ethers.utils.formatUnits(occasion.cost.toString(), 'ether')}
                 </strong>
             </p>
+            {occasion.tickets.toString() === '0' ? (
+                <button className='card__button--out' disabled>
+                    Sold Out
+                </button>
+            ) : (
+                <button className='card__button'>
+                    View Seating
+                </button>
+            )}
         </div>
+        <hr />
     </div>
   )
 }
