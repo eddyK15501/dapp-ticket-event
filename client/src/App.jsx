@@ -17,6 +17,9 @@ function App() {
   const [ticketEvent, setTicketEvent] = useState(null);
   const [occasions, setOccasions] = useState([]);
 
+  const [occasion, setOccasion] = useState({});
+  const [toggle, setToggle] = useState(false);
+
   const fetchData = async () => {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -29,7 +32,7 @@ function App() {
 
       // Get initial events
       const totalOccasions = await ticketEvent.totalOccasions();
-      const events = []
+      const events = [];
 
       for (let i = 1; i <= totalOccasions; i++) {
         const event = await ticketEvent.getEvent(i);
@@ -65,9 +68,18 @@ function App() {
             <strong>Event</strong> Tickets
           </h2>
         </header>
-        <div className="cards">
-          {occasions.map(occasion => (
-            <Card occasion={occasion} key={occasion.name} />
+        <div className='cards'>
+          {occasions.map((occasionProp) => (
+            <Card
+              occasion={occasionProp}
+              setOccasion={setOccasion}
+              ticketEvent={ticketEvent}
+              provider={provider}
+              account={account}
+              toggle={toggle}
+              setToggle={setToggle}
+              key={occasionProp.name}
+            />
           ))}
         </div>
       </div>
