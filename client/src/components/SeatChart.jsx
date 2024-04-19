@@ -9,12 +9,14 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
   const [seatTaken, setSeatTaken] = useState(false);
   const [hasSold, setHasSold] = useState(false);
 
-  const onBuyHandler = async (seatId) => {
+  const onBuyHandle = async (seatId) => {
     const signer = await provider.getSigner();
-    const transaction = await ticketEvent.connect(signer).mint(occasion.id, seatId, { value: occasion.cost });
+    const transaction = await ticketEvent
+      .connect(signer)
+      .mint(occasion.id, seatId, { value: occasion.cost });
     await transaction.wait();
     setHasSold(true);
-  }
+  };
 
   useEffect(() => {
     const getSeatsTaken = async () => {
@@ -35,12 +37,63 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
         <div className='occasion__stage'>
           <strong>STAGE</strong>
         </div>
+        {seatTaken &&
+          Array(25)
+            .fill(1)
+            .map((_, i) => {
+              return (
+                <Seat
+                  key={i}
+                  step={1}
+                  columnStart={0}
+                  maxColumns={5}
+                  rowStart={2}
+                  maxRows={5}
+                  seatTaken={seatTaken}
+                  onBuyHandle={onBuyHandle}
+                />
+              );
+            })}
         <div className='occasion__spacer--1'>
           <strong>WALKWAY</strong>
         </div>
+        {seatTaken &&
+          Array(Number(occasion.maxTickets) - 50)
+            .fill(1)
+            .map((_, i) => {
+              return (
+                <Seat
+                  key={i}
+                  step={26}
+                  columnStart={6}
+                  maxColumns={15}
+                  rowStart={2}
+                  maxRows={15}
+                  seatTaken={seatTaken}
+                  onBuyHandle={onBuyHandle}
+                />
+              );
+            })}
         <div className='occasion__spacer--2'>
           <strong>WALKWAY</strong>
         </div>
+        {seatTaken &&
+          Array(25)
+            .fill(1)
+            .map((_, i) => {
+              return (
+                <Seat
+                  key={i}
+                  step={Number(occasion.maxTickets) - 24}
+                  columnStart={22}
+                  maxColumns={5}
+                  rowStart={2}
+                  maxRows={5}
+                  seatTaken={seatTaken}
+                  onBuyHandle={onBuyHandle}
+                />
+              );
+            })}
       </div>
     </div>
   );
