@@ -11,7 +11,6 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
 
   const onBuyHandle = async (seatId) => {
     try {
-        console.log(seatId);
         const signer = await provider.getSigner();
         const transaction = await ticketEvent
           .connect(signer)
