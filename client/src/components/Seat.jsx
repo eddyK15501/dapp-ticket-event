@@ -1,9 +1,18 @@
-import React from 'react'
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-const Seat = () => {
-  return (
-    <div>Seat</div>
-  )
-}
+const Seat = ({
+  i,
+  step,
+  columnStart,
+  maxColumns,
+  rowStart,
+  maxRows,
+  seatTaken,
+  onBuyHandle,
+}) => {
+  return <div>Seat</div>;
+};
 
-export default Seat
+export default Seat;

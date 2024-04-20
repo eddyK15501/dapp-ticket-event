@@ -44,6 +44,7 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
               return (
                 <Seat
                   key={i}
+                  i={i}
                   step={1}
                   columnStart={0}
                   maxColumns={5}
@@ -64,6 +65,7 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
               return (
                 <Seat
                   key={i}
+                  i={i}
                   step={26}
                   columnStart={6}
                   maxColumns={15}
@@ -84,6 +86,7 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
               return (
                 <Seat
                   key={i}
+                  i={i}
                   step={Number(occasion.maxTickets) - 24}
                   columnStart={22}
                   maxColumns={5}
