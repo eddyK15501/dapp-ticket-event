@@ -26,9 +26,12 @@ function App() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       setProvider(provider);
+      console.log(provider)
 
       const network = await provider.getNetwork();
-      const contractAddress = config[network.chainId].TicketEvent.address;
+      const contractAddress = await config[network.chainId].TicketEvent.address;
+      console.log(`ChainId: ${network.chainId} connected.`);
+
       const ticketEvent = new ethers.Contract(contractAddress, abi, provider);
       setTicketEvent(ticketEvent);
 
