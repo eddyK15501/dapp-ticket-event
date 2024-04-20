@@ -10,13 +10,17 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
   const [hasSold, setHasSold] = useState(false);
 
   const onBuyHandle = async (seatId) => {
-    const signer = await provider.getSigner();
-    const transaction = await ticketEvent
-      .connect(signer)
-      .mint(occasion.id, seatId, { value: occasion.cost });
-    await transaction.wait();
-    setHasSold(true);
-  };
+    try {
+        const signer = await provider.getSigner();
+        const transaction = await ticketEvent
+          .connect(signer)
+          .mint(occasion.id, seatId, { value: occasion.cost });
+        await transaction.wait();
+        setHasSold(true);
+    } catch (err) {
+        console.log(err);
+    }
+};
 
   useEffect(() => {
     const getSeatsTaken = async () => {
@@ -40,7 +44,7 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
         {seatTaken &&
           Array(25)
             .fill(1)
-            .map((_, i) => {
+            .map((e, i) => {
               return (
                 <Seat
                   key={i}
@@ -61,7 +65,7 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
         {seatTaken &&
           Array(Number(occasion.maxTickets) - 50)
             .fill(1)
-            .map((_, i) => {
+            .map((e, i) => {
               return (
                 <Seat
                   key={i}
@@ -82,7 +86,7 @@ const SeatChart = ({ setToggle, occasion, ticketEvent, provider }) => {
         {seatTaken &&
           Array(25)
             .fill(1)
-            .map((_, i) => {
+            .map((e, i) => {
               return (
                 <Seat
                   key={i}
