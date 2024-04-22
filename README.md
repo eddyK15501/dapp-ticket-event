@@ -1,13 +1,9 @@
-# Sample Hardhat Project
+# Ticket Event
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Description
+Ticketing Event application using the ERC721 standard. Metamask test wallet employed for development purposes on localhost:8545.
 
-Try running some of the following tasks:
+<img src="https://i.ibb.co/DG86tds/Screenshot-2024-04-22-at-5-21-01-PM.png">
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+## Screen Recording of the Application In Use
+* [Click Here](https://github.com/eddyK15501/dapp-ticket-event/issues/1)
